@@ -10,6 +10,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { navigation } = navigationData;
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -43,8 +44,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobileMenuOpen]);
-
-  const { navigation } = navigationData;
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -90,9 +89,11 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
+      ${
+        isScrolled ? " bg-white/90 md:bg-white/30 shadow-md" : "bg-transparent"
+      } 
+      md:backdrop-blur-md`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -190,23 +191,19 @@ export default function Header() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className={`fixed inset-0 z-50 md:hidden transition-colors duration-300 ${
-                isScrolled
-                  ? "bg-white"
-                  : "bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg"
-              }`}
+              className="fixed inset-0 z-50 md:hidden bg-white w-full h-full flex flex-col"
               initial="hidden"
               animate="visible"
               exit="hidden"
               variants={mobileMenuVariants}
             >
               <div className="container mx-auto px-4 py-8 h-full flex flex-col">
-                <div className="flex justify-between items-center mb-12">
+                <div className="flex justify-between items-center space-y-4">
                   <Link href="/" className="flex items-center">
                     <img
                       src={navigation.logo}
                       alt="Logo"
-                      className="h-10 w-auto"
+                      className="h-6 w-auto"
                     />
                   </Link>
                   <motion.button
@@ -232,7 +229,7 @@ export default function Header() {
                   </motion.button>
                 </div>
 
-                <div className="flex flex-col space-y-8 flex-grow">
+                <div className="flex flex-col space-y-8 flex-grow mt-4">
                   <AnimatePresence>
                     {navigation.links.map((link, index) => (
                       <motion.div
@@ -248,7 +245,7 @@ export default function Header() {
                       >
                         <Link
                           href={link.href}
-                          className="block text-3xl font-bold text-gray-800 hover:text-primary transition duration-300 py-4 border-b border-gray-200"
+                          className="block text-2xl font-bold text-gray-800 hover:text-primary transition duration-300 py-3 border-b border-gray-200"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {link.title}
