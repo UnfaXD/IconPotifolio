@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import WorkCard from "./WorkCard";
-import ExploreButton from "../../ui/ExploreButton";
+import ExploreButton from "../../components/ui/ExploreButton";
 import contentData from "@/lib/content";
-import AnimatedText from "../../ui/AnimatedText";
+import AnimatedText from "../../components/ui/AnimatedText";
 
 const containerVariants = {
   hidden: { opacity: 0 },
