@@ -3,8 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { WorkCardProps } from "@/types";
+import { useRouter } from "next/navigation";
 
 const WorkCard = ({ work, variants }: WorkCardProps) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/works/${work.id}`);
+  };
+
   return (
     <motion.div
       variants={variants}
@@ -13,6 +20,7 @@ const WorkCard = ({ work, variants }: WorkCardProps) => {
       viewport={{ once: true }}
       whileHover="hover"
       className="group relative cursor-pointer overflow-hidden"
+      onClick={handleClick}
     >
       <motion.div
         className="relative rounded-3xl p-4 transition-all duration-300 ease-out"

@@ -27,12 +27,20 @@ export interface ExploreButtonProps extends HTMLMotionProps<"button"> {
 }
 
 export interface WorkItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   link: string;
   category: string;
   tags: string[];
+  industry: string;
+  headquarters: string;
+  challenges: string;
+  results: string;
+  improvedOnboardingProcess: string;
+  founded: string;
+  companySize: string;
+  additionalImages?: string[];
   image: string;
 }
 
